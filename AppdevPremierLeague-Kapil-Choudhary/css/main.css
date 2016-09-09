@@ -1,0 +1,181 @@
+@font-face
+{
+	font-family: animalsilence;
+	src: url('../fonts/Animal Silence.otf');
+}
+.fanimal{
+	/*font-family: animalsilence;*/
+}
+.container{
+	width:95% !important;
+	padding:0px;
+}
+.list-group-item{
+	padding: 5px 10px !important;
+	font-size: 20px;
+	letter-spacing: 2px;
+	
+}
+/*.list-group-item:nth-child(even){
+	float:right;
+	
+	}*/
+	.list1:nth-child(even){
+		display:none;
+	}
+	.list2:nth-child(odd){
+		display:none;
+	}
+	input[type=text]{
+		width:300px;
+	}
+	.well{
+		display:inline-block !important;
+		min-width:100%;
+		padding:5px !important;
+		margin-bottom:0px !important;
+	}
+	.panel{
+		margin-bottom:10px !important;
+	}
+	hr{
+		margin-bottom:5px !important;
+		margin-top:5px !important;
+	}
+	.btn100{
+		width:99%;
+	}
+	.btn50{
+		width:49%;
+	}
+	.points-box
+	{
+		border-radius: 10px;
+		/*background-color: #9E0808;*/
+		box-shadow: 0px 0px 15px #991414;
+		color: #9E0808;
+		margin-top: 5px;
+		padding: 10px;
+		border: 2px solid #222;
+	}
+	.points-heading
+	{	
+	font-size:3em;	
+	font-color:;	
+	}
+	.points-left
+	{
+		font-size:5em;
+		float:right;
+		margin-top:-125px;
+	}
+	.badge {
+		display: inline-block;
+		min-width: 10px;
+		padding: 3px 7px;
+		font-size: 12px;
+		font-weight: bold;
+		line-height: 1;
+		color: #fff;
+		text-align: center;
+		white-space: nowrap;
+		vertical-align: baseline;
+		background-color: #999;
+		border-radius: 10px;
+		margin: 0px 19px;
+	}
+	.playerImage{
+		width: 140px;
+		height: 140px;
+		margin-top: 11px;
+	}
+	.arrange{
+		height: 168px;
+		padding: 20px;
+	}
+table{
+	font-size:20px;
+}
+.animate-enter, 
+.animate-leave
+{ 
+  -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  position: relative;
+  display: block;
+} 
+ 
+.animate-enter.animate-enter-active, 
+.animate-leave {
+  opacity: 1;
+  top: 0;
+  height: 30px;
+}
+ 
+.animate-leave.animate-leave-active,
+.animate-enter {
+  opacity: 0;
+  top: -50px;
+  height: 0px;
+}
+
+
+.frimg{
+display:inline-block;
+/*border:2px solid red;*/
+width:150px;
+height:110px;
+}
+.frdetails{
+display:inline-block;
+/*border:2px solid green;*/
+width:450px;
+height:110px;
+}
+.ribbon{
+	background-image:url('../images/header_bg3.jpg');
+	background-position: -10px;
+	background-repeat: repeat-x;
+}
+.navbar{
+	min-height:75px !important;
+	border:none !important;
+}
+.logoHeader{
+	width: 40%;
+margin: 10px auto;
+font-size: 28px;
+line-height: 77px;
+color: white;
+padding-left: 85px;
+font-weight: bold;
+}
+.navbar{
+	margin-left: -35px !important;
+	margin-bottom: 5px !important;
+}
+.logoleft,.logoright{
+	height: 200px;
+width: 237px;
+position: absolute;
+margin-top: -20px;
+
+}
+.logoleft{
+  left:20%;
+}
+.logoright{
+ left:67%;
+}
+body{
+	background-image: url('../images/apl_logo.png') !important;
+     background-position: -190px -150px !important;
+}
+.panel-primary>.panel-heading{
+    background-image:linear-gradient(to bottom,#DD2433 0,#610D0D 100%) !important;
+    font-weight:bold;
+    font-size:20px;
+}
