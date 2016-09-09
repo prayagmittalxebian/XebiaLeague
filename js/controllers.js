@@ -4,12 +4,14 @@ apl.controller('AplController', ['$scope', 'data', 'playerService',
         var flag = true;
 
 		$scope.players = data.getListOfPlayers();
-        data.saveListOfPlayers($scope.players);
+    data.saveListOfPlayers($scope.players);
 		$scope.maxPoints = 2500;
         $scope.randomIndices = JSON.parse(localStorage.getItem('indices')) || [];
 
         $scope.teamA = {};
         $scope.teamB = {};
+        $scope.teamC= {};
+        $scope.teamD= {};
 
         calculateTeams();
 
@@ -21,6 +23,14 @@ apl.controller('AplController', ['$scope', 'data', 'playerService',
             $scope.teamB.name = 'Hotshots';
             $scope.teamB.playersBought = ((getTeamInfo('teamB')).players);
             $scope.teamB.currentCost = (getTeamInfo('teamB')).cost;
+
+            $scope.teamC.name = 'StrikersA';
+            $scope.teamC.playersBought = ((getTeamInfo('teamC')).players);
+            $scope.teamC.currentCost = (getTeamInfo('teamC')).cost;
+
+            $scope.teamD.name = 'HotshotsA';
+            $scope.teamD.playersBought = ((getTeamInfo('teamD')).players);
+            $scope.teamD.currentCost = (getTeamInfo('teamD')).cost;
         }
 
         function getTeamInfo(team){
