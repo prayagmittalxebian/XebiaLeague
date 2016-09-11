@@ -1,4 +1,5 @@
 apl.factory('teamService', function (data) {
+    var myTeams = ['Strikers', 'Hotshots', 'Phantoms', 'Beasts'];
     getTeamInfo = function (team, players) {
         var cost = 0, counter = 0;
         for (var i = 0; i < players.length; i++) {
@@ -16,8 +17,9 @@ apl.factory('teamService', function (data) {
     return {
         getTeams: function (players) {
             var teams = [];
-            angular.forEach(['Strikers', 'Hotshots'], function (value) {
-                teams.push(getTeamInfo(value, players));
+            angular.forEach(myTeams, function (value) {
+                var teamInfo = getTeamInfo(value, players);
+                teams.push(teamInfo);
             });
             return teams;
 

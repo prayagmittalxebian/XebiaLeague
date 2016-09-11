@@ -65,9 +65,8 @@
 	}
 	.points-left
 	{
-		font-size:5em;
+		font-size: 2em;
 		float:right;
-		margin-top:-125px;
 	}
 	.badge {
 		display: inline-block;
@@ -178,4 +177,20 @@ body{
     background-image:linear-gradient(to bottom,#DD2433 0,#610D0D 100%) !important;
     font-weight:bold;
     font-size:20px;
+}
+
+.btn1 {
+	color: rgb(49, 46, 46);
+	background-color: rgba(255, 222, 121, 0.96);
+	border-radius: 10px 0 0 10px;
+	font-size: 16px;
+}
+
+.bg-success {
+	background-color: #18f070;
+}
+
+.bg-primary {
+	color: #fff;
+	background-color: #337ab7;
 }

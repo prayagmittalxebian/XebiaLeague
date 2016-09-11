@@ -1,75 +1,68 @@
-apl.controller('AplController', ['$scope', 'data', 'playerService', 'teamService',
-    function ($scope, Data, PlayerService, TeamService) {
-        var flag = true;
+apl.controller('AplController', ['$scope', 'data', 'playerService', 'teamService', '$mdDialog',
+    function ($scope, Data, PlayerService, TeamService, $mdDialog) {
         $scope.players = PlayerService.getPlayers();
         Data.saveListOfPlayers($scope.players);
         $scope.maxPoints = 2500;
-        $scope.randomIndices = JSON.parse(localStorage.getItem('indices')) || [];
+        // $scope.randomIndices = JSON.parse(localStorage.getItem('indices')) || [];
 
         $scope.teams = [];
-        $scope.teamA = {};
-        $scope.teamB = {};
 
         calculateTeams();
 
         function calculateTeams() {
             $scope.teams = TeamService.getTeams($scope.players);
-            $scope.teamA = $scope.teams[0];
-            $scope.teamB = $scope.teams[1];
         }
 
 
-        function buyingAllowed(playerCost, team) {
-            if ((10 - $scope[team].playersBought) == 0 && playerCost >= 100 && (parseInt($scope[team].currentCost, 10) + parseInt(playerCost, 10) <= 2500)) {
-                flag = true;
-                return true;
-            }
-            if ((10 - $scope[team].playersBought) < 0 && ($scope.maxPoints - parseInt($scope[team].currentCost, 10) - parseInt(playerCost, 10) >= 0)) {
-                flag = true;
-                return true;
+        function buyingAllowed(playerCost, index) {
+            $scope.currentTeam = $scope.teams[index];
+
+            //already 11 players selected
+            if ($scope.currentTeam.playersBought > 10) {
+                alert("You already have selected maximum no's of player");
+                return false;
             }
 
-            if ($scope.maxPoints - parseInt($scope.teamA.currentCost, 10) < 100 && $scope.maxPoints - parseInt($scope.teamB.currentCost, 10) < 100) {
-                flag = false;
+            if ((parseInt($scope.currentTeam.currentCost, 10) + parseInt(playerCost, 10) ) <= $scope.maxPoints) {
                 return true;
             }
+            alert("You don't have enough points to buy this player. Reduce the amount and re-try");
+            return false;
 
-            flag = true;
-            if ((($scope.maxPoints - parseInt($scope[team].currentCost, 10) - parseInt(playerCost, 10)) / (11 - (parseInt($scope[team].playersBought) + 1))) > 100) {
-                if (($scope.maxPoints - parseInt($scope[team].currentCost, 10) - parseInt(playerCost, 10)) < 0 && (11 - (parseInt($scope[team].playersBought) + 1)) < 0) {
-                    return false;
-                }
-                return true;
-            }
         }
 
         $scope.getRandomPlayer = function () {
             $scope.randomIndex = Math.floor(Math.random() * ($scope.players.length));
-            if (_.contains($scope.randomIndices, $scope.randomIndex) && $scope.randomIndices.length < (_.filter($scope.players, function (player) {
-                    return player.sold == false
-                })).length) {
-                $scope.getRandomPlayer();
-            }
-            else if (_.contains($scope.randomIndices, $scope.randomIndex) && $scope.randomIndices.length == (_.filter($scope.players, function (player) {
-                    return player.sold == false
-                })).length) {
-                $scope.randomIndices = [];
-                localStorage.setItem('indices', JSON.stringify($scope.randomIndices));
-            }
-            else if ($scope.players[$scope.randomIndex].sold == false) {
+            if (!$scope.players[$scope.randomIndex].sold)
                 $scope.currentPlayer = $scope.players[$scope.randomIndex];
-                $scope.randomIndices.push($scope.randomIndex);
-                localStorage.setItem('indices', JSON.stringify($scope.randomIndices));
-            } else {
+            else
                 $scope.getRandomPlayer();
-            }
+
+            // if (_.contains($scope.randomIndices, $scope.randomIndex) && $scope.randomIndices.length < (_.filter($scope.players, function (player) {
+            //         return player.sold == false
+            //     })).length) {
+            //     $scope.getRandomPlayer();
+            // }
+            // else if (_.contains($scope.randomIndices, $scope.randomIndex) && $scope.randomIndices.length == (_.filter($scope.players, function (player) {
+            //         return player.sold == false
+            //     })).length) {
+            //     $scope.randomIndices = [];
+            //     localStorage.setItem('indices', JSON.stringify($scope.randomIndices));
+            // }
+            // else if ($scope.players[$scope.randomIndex].sold == false) {
+            //     $scope.currentPlayer = $scope.players[$scope.randomIndex];
+            //     $scope.randomIndices.push($scope.randomIndex);
+            //     localStorage.setItem('indices', JSON.stringify($scope.randomIndices));
+            // } else {
+            //     $scope.getRandomPlayer();
+            // }
         };
 
         $scope.$watch('players', function () {
             calculateTeams();
         }, true);
 
-        $scope.addToTeam = function (playerCost, team) {
+        $scope.addToTeam = function (playerCost, teamIndex) {
             if ($scope.currentPlayer == '' || $scope.currentPlayer == undefined) {
                 alert('Choose a player');
                 return undefined;
@@ -81,23 +74,17 @@ apl.controller('AplController', ['$scope', 'data', 'playerService', 'teamService
             }
 
 
-            if (buyingAllowed(playerCost, team)) {
-                $scope.players[$scope.randomIndex].team = team;
+            if (buyingAllowed(playerCost, teamIndex)) {
+                $scope.players[$scope.randomIndex].team = $scope.teams[teamIndex].name;
                 $scope.players[$scope.randomIndex].sold = true;
-                if (!flag) {
-                    $scope.players[$scope.randomIndex].cost = 0;
-                }
-                else {
-                    $scope.players[$scope.randomIndex].cost = playerCost;
-                }
+
+                $scope.players[$scope.randomIndex].cost = playerCost;
                 Data.saveListOfPlayers($scope.players);
                 $scope.players = Data.getListOfPlayers();
-                $scope.randomIndices = _.without($scope.randomIndices, $scope.randomIndex);
-                localStorage.setItem('indices', JSON.stringify($scope.randomIndices));
-                $scope.currentPlayer = '';
-            }
-            else {
-                alert("This team cannot buy the player for this amount. Reduce the amount and re-try");
+                // $scope.randomIndices = _.without($scope.randomIndices, $scope.randomIndex);
+                // localStorage.setItem('indices', JSON.stringify($scope.randomIndices));
+                $scope.ShowCongratulations();
+                // $scope.currentPlayer = '';
             }
         };
 
@@ -106,6 +93,49 @@ apl.controller('AplController', ['$scope', 'data', 'playerService', 'teamService
             player.cost = 100;
             player.team = '';
             Data.saveListOfPlayers($scope.players);
-        }
+        };
+
+        $scope.showCustom = function (event) {
+            $mdDialog.show({
+                clickOutsideToClose: true,
+                scope: $scope,
+                parent: angular.element(document.body),
+                targetEvent: event,
+                preserveScope: true,
+                templateUrl: 'playerList.html',
+                fullscreen: true,
+                controller: function DialogController($scope, $mdDialog, playerService) {
+                    $scope.players = playerService.getPlayers();
+                    $scope.closeDialog = function () {
+                        $mdDialog.hide();
+                    }
+                }
+            });
+        };
+
+        $scope.playerSelectionDialog = function (event) {
+            $scope.getRandomPlayer();
+            $mdDialog.show({
+                clickOutsideToClose: true,
+                scope: $scope,
+                parent: angular.element(document.body),
+                targetEvent: event,
+                preserveScope: true,
+                templateUrl: 'playerSelection.html',
+                fullscreen: true
+            });
+        };
+
+
+        $scope.ShowCongratulations = function () {
+            $mdDialog.show({
+                clickOutsideToClose: true,
+                scope: $scope,
+                parent: angular.element(document.body),
+                preserveScope: true,
+                templateUrl: 'selectedPlayer.html',
+            });
+        };
     }
+
 ]);
