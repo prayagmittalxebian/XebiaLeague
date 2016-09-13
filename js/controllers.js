@@ -3,21 +3,30 @@ apl.controller('AplController', ['$scope', 'data', 'playerService', 'teamService
         $scope.players = PlayerService.getPlayers();
         Data.saveListOfPlayers($scope.players);
         $scope.maxPoints = 2500;
-        // $scope.randomIndices = JSON.parse(localStorage.getItem('indices')) || [];
 
         $scope.teams = [];
 
         calculateTeams();
 
+        $scope.getImage = function (player) {
+            return PlayerService.getImage(player);
+        }
+
         function calculateTeams() {
             $scope.teams = TeamService.getTeams($scope.players);
         }
 
-
-        function buyingAllowed(playerCost, index) {
+        function buyingAllowed(player, playerCost, index) {
             $scope.currentTeam = $scope.teams[index];
+            //
+            // // can not have more than 9 male players
+            // if (PlayerService.isMale(player) && $scope.currentTeam.malePlayers > 8) {
+            //     alert("You already have selected maximum no's of Male player. Go for Female");
+            //     return false;
+            // }
 
             //already 11 players selected
+
             if ($scope.currentTeam.playersBought > 10) {
                 alert("You already have selected maximum no's of player");
                 return false;
@@ -38,24 +47,6 @@ apl.controller('AplController', ['$scope', 'data', 'playerService', 'teamService
             else
                 $scope.getRandomPlayer();
 
-            // if (_.contains($scope.randomIndices, $scope.randomIndex) && $scope.randomIndices.length < (_.filter($scope.players, function (player) {
-            //         return player.sold == false
-            //     })).length) {
-            //     $scope.getRandomPlayer();
-            // }
-            // else if (_.contains($scope.randomIndices, $scope.randomIndex) && $scope.randomIndices.length == (_.filter($scope.players, function (player) {
-            //         return player.sold == false
-            //     })).length) {
-            //     $scope.randomIndices = [];
-            //     localStorage.setItem('indices', JSON.stringify($scope.randomIndices));
-            // }
-            // else if ($scope.players[$scope.randomIndex].sold == false) {
-            //     $scope.currentPlayer = $scope.players[$scope.randomIndex];
-            //     $scope.randomIndices.push($scope.randomIndex);
-            //     localStorage.setItem('indices', JSON.stringify($scope.randomIndices));
-            // } else {
-            //     $scope.getRandomPlayer();
-            // }
         };
 
         $scope.$watch('players', function () {
@@ -74,10 +65,9 @@ apl.controller('AplController', ['$scope', 'data', 'playerService', 'teamService
             }
 
 
-            if (buyingAllowed(playerCost, teamIndex)) {
+            if (buyingAllowed($scope.currentPlayer, playerCost, teamIndex)) {
                 $scope.players[$scope.randomIndex].team = $scope.teams[teamIndex].name;
                 $scope.players[$scope.randomIndex].sold = true;
-
                 $scope.players[$scope.randomIndex].cost = playerCost;
                 Data.saveListOfPlayers($scope.players);
                 $scope.players = Data.getListOfPlayers();
@@ -138,4 +128,5 @@ apl.controller('AplController', ['$scope', 'data', 'playerService', 'teamService
         };
     }
 
-]);
+])
+;

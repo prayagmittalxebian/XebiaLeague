@@ -9,7 +9,7 @@
                             <!--<button class="btn btn-success btn-lg btn100" ng-click="getRandomPlayer()">Get Player</button>-->
                             <div class="row" style="margin-top:10px">
                                 <div class="col-md-3">
-                                    <img src="{{currentPlayer.image || 'images/team/sachin.jpg'}}" alt="..."
+                                    <img ng-src="{{getImage(currentPlayer)}}" alt="{{currentPlayer.name}}"
                                          class="img-circle playerImage">
                                 </div>
                                 <div class="col-md-9">
@@ -18,6 +18,7 @@
                                             {{currentPlayer.name || 'Get Ready for the Next Player'}}
                                         </h1>
                                         <blockquote ng-if="currentPlayer.description">{{currentPlayer.description}}
+                                            ({{currentPlayer.gender}})
                                         </blockquote>
                                     </div>
                                 </div>

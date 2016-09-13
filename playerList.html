@@ -9,11 +9,11 @@
             <div class="col-md-3" ng-repeat="player in row ">
                 <md-content class="md-padding" layout="column">
                     <md-card>
-                        <img src="{{player.image || 'images/team/sachin.jpg'}}" alt="..."
+                        <img ng-src="{{getImage(player)}}" alt="..."
                              class="img-circle playerImage"/>
                         <md-card-title>
                             <md-card-title-text>
-                                <span class="md-headline">{{player.name}}</span>
+                                <span class="md-headline">{{player.name}} ({{player.gender}})</span>
                             </md-card-title-text>
                         </md-card-title>
                     </md-card>

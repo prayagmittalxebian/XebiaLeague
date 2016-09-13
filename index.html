@@ -59,7 +59,7 @@
                     <md-subheader class="md-no-sticky">Squad</md-subheader>
                     <md-list-item class="md-3-line" ng-repeat="player in players | orderBy:'cost':true"
                                   ng-if="player.team == team.name" ng-click="removePlayer(player)">
-                        <img ng-src="{{player.image}}?{{$index}}" class="md-avatar" alt="{{player.name}}"/>
+                        <img ng-src="{{getImage(player)}}" class="md-avatar" alt="{{player.name}}"/>
                         <div class="md-list-item-text" layout="column">
                             <h3>{{ player.name }} ({{player.cost >= 100 ? player.cost : '$$'}}) </h3>
                             <p>{{ player.description }}</p>
