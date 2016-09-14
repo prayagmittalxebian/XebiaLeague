@@ -116,7 +116,6 @@ apl.controller('AplController', ['$scope', 'data', 'playerService', 'teamService
             });
         };
 
-
         $scope.ShowCongratulations = function () {
             $mdDialog.show({
                 clickOutsideToClose: true,

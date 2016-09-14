@@ -1,22 +1,35 @@
 apl.factory('teamService', function (data, playerService) {
-    var myTeams = ['Strikers', 'Hotshots', 'Phantoms', 'Beasts'];
+    var myTeams = [{name: "Super Giants", captain: "", image: "superGiants"},
+        {
+            name: "The Beasts",
+            captain: "",
+            image: "theBeasts"
+        }, {name: "Team Raiders", captain: "", image: "teamRiders"},
+        {name: "Eleven Ducks", captain: "", image: "elevenDucks"}];
+
+
     getTeamInfo = function (team, players) {
+        var teamCaptains = playerService.getCaptains(players);
         var cost = 0, counter = 0, malePlayers = 0;
+        var captain = _.find(teamCaptains, function (player) {
+            if (player.team == team.name) return player.captain;
+        });
         for (var i = 0; i < players.length; i++) {
-            if (players[i].team == team) {
+            if (players[i].team == team.name) {
                 cost += parseInt(players[i].cost, 10);
                 if (playerService.isMale(players[i])) {
                     malePlayers++;
                 }
-
                 counter++;
             }
         }
         return {
-            name: team,
+            name: team.name,
             currentCost: cost,
             playersBought: counter,
-            malePlayers: malePlayers
+            malePlayers: malePlayers,
+            captain: captain,
+            image: team.image
         }
     }
     return {
