@@ -14,11 +14,11 @@
 	padding: 5px 10px !important;
 	font-size: 20px;
 	letter-spacing: 2px;
-	
+
 }
 /*.list-group-item:nth-child(even){
 	float:right;
-	
+
 	}*/
 	.list1:nth-child(even){
 		display:none;
@@ -59,15 +59,14 @@
 		border: 2px solid #222;
 	}
 	.points-heading
-	{	
-	font-size:3em;	
-	font-color:;	
+	{
+	font-size:3em;
+	font-color:;
 	}
 	.points-left
 	{
-		font-size:5em;
+		font-size: 2em;
 		float:right;
-		margin-top:-125px;
 	}
 	.badge {
 		display: inline-block;
@@ -96,9 +95,9 @@
 table{
 	font-size:20px;
 }
-.animate-enter, 
+.animate-enter,
 .animate-leave
-{ 
+{
   -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
   -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
   -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
@@ -106,15 +105,15 @@ table{
   transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
   position: relative;
   display: block;
-} 
- 
-.animate-enter.animate-enter-active, 
+}
+
+.animate-enter.animate-enter-active,
 .animate-leave {
   opacity: 1;
   top: 0;
   height: 30px;
 }
- 
+
 .animate-leave.animate-leave-active,
 .animate-enter {
   opacity: 0;
@@ -158,17 +157,16 @@ font-weight: bold;
 	margin-bottom: 5px !important;
 }
 .logoleft,.logoright{
-	height: 200px;
-width: 237px;
-position: absolute;
-margin-top: -20px;
-
+	  height: 50px;
+    position: absolute;
+	  margin-top: 21px;
+	width: 150px;
 }
 .logoleft{
-  left:20%;
+	left: 20%;
 }
 .logoright{
- left:67%;
+	left: 68%;
 }
 body{
 	background-image: url('../images/apl_logo.png') !important;
@@ -178,4 +176,20 @@ body{
     background-image:linear-gradient(to bottom,#DD2433 0,#610D0D 100%) !important;
     font-weight:bold;
     font-size:20px;
+}
+
+.btn1 {
+	color: rgb(49, 46, 46);
+	background-color: rgba(255, 222, 121, 0.96);
+	border-radius: 10px 0 0 10px;
+	font-size: 16px;
+}
+
+.bg-success {
+	background-color: #18f070;
+}
+
+.bg-primary {
+	color: #fff;
+	background-color: #337ab7;
 }

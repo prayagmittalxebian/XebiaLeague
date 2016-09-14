@@ -1,126 +1,131 @@
-apl.controller('AplController', ['$scope', 'data', 'playerService',
-	function($scope, data, playerService) {
+apl.controller('AplController', ['$scope', 'data', 'playerService', 'teamService', '$mdDialog',
+    function ($scope, Data, PlayerService, TeamService, $mdDialog) {
+        $scope.players = PlayerService.getPlayers();
+        Data.saveListOfPlayers($scope.players);
+        $scope.maxPoints = 2500;
 
-        var flag = true;
-
-		$scope.players = data.getListOfPlayers();
-        data.saveListOfPlayers($scope.players);
-		$scope.maxPoints = 2500;
-        $scope.randomIndices = JSON.parse(localStorage.getItem('indices')) || [];
-
-        $scope.teamA = {};
-        $scope.teamB = {};
+        $scope.teams = [];
 
         calculateTeams();
 
-        function calculateTeams(){
-            $scope.teamA.name = 'Strikers';
-            $scope.teamA.playersBought = (getTeamInfo('teamA')).players;
-            $scope.teamA.currentCost = (getTeamInfo('teamA')).cost;
-
-            $scope.teamB.name = 'Hotshots';
-            $scope.teamB.playersBought = ((getTeamInfo('teamB')).players);
-            $scope.teamB.currentCost = (getTeamInfo('teamB')).cost;
+        $scope.getImage = function (player) {
+            return PlayerService.getImage(player);
         }
 
-        function getTeamInfo(team){
-          var cost = 0, players = 0;
-          for(var i = 0; i < $scope.players.length; i++){
-            if($scope.players[i].team == team){
-              cost += parseInt($scope.players[i].cost, 10);
-              players++;
-            }
-          }
-
-          return {
-            cost: cost,
-            players : players
-          }
+        function calculateTeams() {
+            $scope.teams = TeamService.getTeams($scope.players);
         }
 
-        function buyingAllowed(playerCost, team){
-          if((10 - $scope[team].playersBought) == 0 && playerCost >= 100 && (parseInt($scope[team].currentCost, 10) + parseInt(playerCost, 10) <=2500)){
-            flag = true;
-            return true;
-          }
-          if((10 - $scope[team].playersBought) < 0 && ($scope.maxPoints - parseInt($scope[team].currentCost,10) - parseInt(playerCost, 10) >= 0)){
-            flag = true;
-            return true;
-          }
+        function buyingAllowed(player, playerCost, index) {
+            $scope.currentTeam = $scope.teams[index];
+            //
+            // // can not have more than 9 male players
+            // if (PlayerService.isMale(player) && $scope.currentTeam.malePlayers > 8) {
+            //     alert("You already have selected maximum no's of Male player. Go for Female");
+            //     return false;
+            // }
 
-          if($scope.maxPoints - parseInt($scope.teamA.currentCost,10) < 100 && $scope.maxPoints - parseInt($scope.teamB.currentCost,10) < 100){
-            flag = false;
-            return true;
-          }
+            //already 11 players selected
 
-          flag = true;
-          if((($scope.maxPoints - parseInt($scope[team].currentCost,10) - parseInt(playerCost,10))/(11 - (parseInt($scope[team].playersBought) + 1))) > 100){
-            if(($scope.maxPoints - parseInt($scope[team].currentCost,10) - parseInt(playerCost,10)) < 0 && (11 - (parseInt($scope[team].playersBought) + 1)) < 0){
-              return false;
+            if ($scope.currentTeam.playersBought > 10) {
+                alert("You already have selected maximum no's of player");
+                return false;
             }
-            return true;
-          }
+
+            if ((parseInt($scope.currentTeam.currentCost, 10) + parseInt(playerCost, 10) ) <= $scope.maxPoints) {
+                return true;
+            }
+            alert("You don't have enough points to buy this player. Reduce the amount and re-try");
+            return false;
+
         }
 
-		$scope.getRandomPlayer = function() {
-			$scope.randomIndex = Math.floor(Math.random() * ($scope.players.length));
-            if(_.contains($scope.randomIndices, $scope.randomIndex) && $scope.randomIndices.length < (_.filter($scope.players, function(player){return player.sold == false})).length){
-              $scope.getRandomPlayer();
-            }
-            else if(_.contains($scope.randomIndices, $scope.randomIndex) && $scope.randomIndices.length == (_.filter($scope.players, function(player){return player.sold == false})).length){
-              $scope.randomIndices = [];
-              localStorage.setItem('indices', JSON.stringify($scope.randomIndices));
-            }
-			else if ($scope.players[$scope.randomIndex].sold == false) {
-				$scope.currentPlayer = $scope.players[$scope.randomIndex];
-                $scope.randomIndices.push($scope.randomIndex);
-                localStorage.setItem('indices', JSON.stringify($scope.randomIndices));
-			} else {
-				$scope.getRandomPlayer();
-			}
-		};
+        $scope.getRandomPlayer = function () {
+            $scope.randomIndex = Math.floor(Math.random() * ($scope.players.length));
+            if (!$scope.players[$scope.randomIndex].sold)
+                $scope.currentPlayer = $scope.players[$scope.randomIndex];
+            else
+                $scope.getRandomPlayer();
 
-        $scope.$watch('players', function(){
-          calculateTeams();
+        };
+
+        $scope.$watch('players', function () {
+            calculateTeams();
         }, true);
 
-		$scope.addToTeam = function(playerCost, team) {
-            if($scope.currentPlayer == '' || $scope.currentPlayer == undefined){
-              alert('Choose a player');
-              return undefined;
+        $scope.addToTeam = function (playerCost, teamIndex) {
+            if ($scope.currentPlayer == '' || $scope.currentPlayer == undefined) {
+                alert('Choose a player');
+                return undefined;
             }
 
-			if(playerCost == 0 || !playerCost){
-              alert('Enter a valid player cost');
-              return undefined;
+            if (playerCost == 0 || !playerCost) {
+                alert('Enter a valid player cost');
+                return undefined;
             }
 
 
-            if(buyingAllowed(playerCost, team)){
-              $scope.players[$scope.randomIndex].team = team;
-              $scope.players[$scope.randomIndex].sold = true;
-              if(!flag){
-                $scope.players[$scope.randomIndex].cost = 0;
-              }
-              else{
+            if (buyingAllowed($scope.currentPlayer, playerCost, teamIndex)) {
+                $scope.players[$scope.randomIndex].team = $scope.teams[teamIndex].name;
+                $scope.players[$scope.randomIndex].sold = true;
                 $scope.players[$scope.randomIndex].cost = playerCost;
-              }
-              data.saveListOfPlayers($scope.players);
-              $scope.players = data.getListOfPlayers();
-              $scope.randomIndices = _.without($scope.randomIndices, $scope.randomIndex);
-              localStorage.setItem('indices', JSON.stringify($scope.randomIndices));
-              $scope.currentPlayer = '';
+                Data.saveListOfPlayers($scope.players);
+                $scope.players = Data.getListOfPlayers();
+                // $scope.randomIndices = _.without($scope.randomIndices, $scope.randomIndex);
+                // localStorage.setItem('indices', JSON.stringify($scope.randomIndices));
+                $scope.ShowCongratulations();
+                // $scope.currentPlayer = '';
             }
-            else{
-              alert("This team cannot buy the player for this amount. Reduce the amount and re-try");
-            }
-		};
+        };
 
-        $scope.removePlayer = function(player){
-          player.sold = false;
-          player.cost = 100;
-          player.team = '';
-          data.saveListOfPlayers($scope.players);
-        }
-	}
-]);
+        $scope.removePlayer = function (player) {
+            player.sold = false;
+            player.cost = 100;
+            player.team = '';
+            Data.saveListOfPlayers($scope.players);
+        };
+
+        $scope.showCustom = function (event) {
+            $mdDialog.show({
+                clickOutsideToClose: true,
+                scope: $scope,
+                parent: angular.element(document.body),
+                targetEvent: event,
+                preserveScope: true,
+                templateUrl: 'playerList.html',
+                fullscreen: true,
+                controller: function DialogController($scope, $mdDialog, playerService) {
+                    $scope.players = playerService.getPlayers();
+                    $scope.closeDialog = function () {
+                        $mdDialog.hide();
+                    }
+                }
+            });
+        };
+
+        $scope.playerSelectionDialog = function (event) {
+            $scope.getRandomPlayer();
+            $mdDialog.show({
+                clickOutsideToClose: true,
+                scope: $scope,
+                parent: angular.element(document.body),
+                targetEvent: event,
+                preserveScope: true,
+                templateUrl: 'playerSelection.html',
+                fullscreen: true
+            });
+        };
+
+        $scope.ShowCongratulations = function () {
+            $mdDialog.show({
+                clickOutsideToClose: true,
+                scope: $scope,
+                parent: angular.element(document.body),
+                preserveScope: true,
+                templateUrl: 'selectedPlayer.html',
+            });
+        };
+    }
+
+])
+;

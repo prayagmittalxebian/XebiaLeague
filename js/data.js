@@ -1,424 +1,100 @@
-apl.factory('data', function(){
-  var listOfPlayers = [
-    {
-      name: 'Aakash Sharma',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'I am a good opener. I can provide a good start to the team. Also I am a good fielder.',
-      image: 'images/team/sachin.jpg'
-    },
-    {
-      name: 'Abhimanyu Kahal',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'NA',
-      image: 'images/team/sachin.jpg'
-    },
-    {
-      name: 'Abhinav Dasmana',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'I am a good opener. I can provide a good start to the team. Also I am a good fielder.',
-      image: 'images/team/sachin.jpg'
-    },
-    {
-      name: 'Abhishek Nalwaya',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'I have dropped all the catches that ever came to me. Planning to write a book on How To Catch',
-      image: 'images/team/abhisheknalwaya.png'
-    },
-    {
-      name: 'Aditya Pal',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'Primarily a Batsman, can bowl few spin, medium pace overs as well.',
-      image: 'images/team/sachin.jpg'
-    },
-    // {
-    //   name: 'Aditya Saxena',
-    //   bats: true,
-    //   bowls: true,
-    //   team: '',
-    //   cost:100,
-    //   sold: false,
-    //   active: true,
-    //   description: 'Played at college level.',
-    //   image: 'image/sachin.jpg'
-    // },
-    {
-      name: 'Akshay Gupta',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'You know me well. Super fitness with exceptional fielding and bowling. Dare to have a face off :)',
-      image: 'images/team/akshaygupta.jpg'
-    },
-    {
-      name: 'Akshaya Kumar Sharma',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'Left Arm Fast Bowler',
-      image: 'images/team/akshaya.jpg'
-    },
-    {
-      name: 'Aman Singal',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'Can Catch the ball with eyes closed apart from brilliant batting and bowling',
-      image: 'images/team/aman.jpg'
-    },
-     {
-      name: 'Anuj Dua',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'I was member of Cricket team in my previous organization & used to open the innings. Can bowl medium pace as well.',
-      image: 'images/team/sachin.jpg'
-    },
-    {
-      name: 'Arpit Kulsreshta',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'Love to Open.',
-      image: 'images/team/arpit.jpg'
-    },
-    {
-      name: 'Ashish Manchanda',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'With win win attitude I ensure I fight to win till the last ball is bowled be it batting, bowling or fielding, My contribution will always be more than 100%.',
-      image: 'images/team/manchanda.jpg'
-    },
-    {
-      name: 'Awanish Kumar',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'I love to play cricket',
-      image: 'images/team/Awanish.jpg'
-    },
-    {
-      name: 'Biju',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'Can hit sixes as much as the team wants. Get opposition teams top order batsmen out at will!',
-      image: 'images/team/biju.jpg'
-    },
-    {
-      name: 'Gagan Sahni',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'Played at college level.',
-      image: 'images/team/sachin.jpg'
-    },
-    {
-      name: 'Hemant Gulati',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'NA',
-      image: 'images/team/sachin.jpg'
-    },    
-    {
-      name: 'Jatin Setia',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'Opening Batsman and Medium pace part time bowler. Good fielding and catching skills.',
-      image: 'images/team/sachin.jpg'
-    },    
-    {
-      name: 'Jyoti Prakash Datta',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'I Bat defensively and very slowly for hours. I bowl even slower but get batsmen caught out on the boundary(sometimes). I field ok and do not let go of any catches and I do not misfield!',
-      image: 'images/team/jyoti.jpg'
-    },
-    {
-      name: 'Karan Arora',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'NA',
-      image: 'images/team/karanarora.jpg'
-    },
-    // {
-    //   name: 'Mahesh Saini',
-    //   bats: true,
-    //   bowls: true,
-    //   team: '',
-    //   cost:100,
-    //   sold: false,
-    //   active: true,
-    //   description: 'NA',
-    //   image: 'image/sachin.jpg'
-    // },
-    {
-      name: 'Neeraj Gupta',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'NA',
-      image: 'images/team/sachin.jpg'
-    },
-    {
-      name: 'Nitish Bhatnagar',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'NA',
-      image: 'images/team/sachin.jpg'
-    },
-    {
-      name: 'Nitin Verma',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'Currently training in South Africa with the team that defeated India. Highly motivated player with impeccable track record in gully cricket.',
-      image: 'images/team/sachin.jpg'
-    },
-    {
-      name: 'Pankaj Arora',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'NA',
-      image: 'images/team/pankajarora.jpg'
-    },
-    {
-      name: 'Pinakpani Das',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'Right Arm Medium Bowler, Right Hand Batsmen. Played for MSO XI  and won the third position in the last Mckinsey Cricket League.',
-      image: 'images/team/sachin.jpg'
-    },
-    {
-      name: 'Prashant Jain',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'I am a medium fast bowler and mid level batsman. I like playing in pressure situations and could come handy.',
-      image: 'images/team/sachin.jpg'
-    },
-    {
-      name: 'Prayag Mittal',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'I am passionate about cricket. I am a bowler but appdev players treat me as batsman , now I am all rounder',
-      image: 'images/team/prayag.png'
-    },
-    {
-      name: 'Puneet Kumar',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'I play as a fast bowler in team and usually bat at number 4-5',
-      image: 'images/team/sachin.jpg'
-    },
-    {
-      name: 'Ranjeet',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'NA',
-      image: 'images/team/sachin.jpg'
-    },
-    {
-      name: 'Sanjeev Kumar',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'NA',
-      image: 'images/team/sanjeev.jpg'
-    },
-    {
-      name: 'Sanjeev Mishra',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost: 100,
-      sold: false,
-      active: true,
-      description: 'Bowler',
-      image: 'images/team/sanjeevmishra.jpg'
-    },
-    {
-      name: 'Shadab Ahmed',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'Like my favourite language Ruby, I blend sound base technique along with scope of great flexibility.',
-      image: 'images/team/shadab.jpg'
-    },
-    {
-      name: 'Siddharth Joshi',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'A batsman who can bowl and a bolwer who can bat.',
-      image: 'images/team/siddharth.jpg'
-    },
-    {
-      name: 'Sourabh Gupta',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'NA',
-      image: 'images/team/sourabhgupta.jpg'
-    },    
-    {
-      name: 'Sumit Jolly',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost:100,
-      sold: false,
-      active: true,
-      description: 'A solid WicketKeeper',
-      image: 'images/team/sumitjolly.jpg'
-    },
-    {
-      name: 'Sundeep Gupta',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost: 100,
-      sold: false,
-      active: true,
-      description: 'NA',
-      image: 'images/team/sachin.jpg'
-    },
-    {
-      name: 'Vikas Kumar',
-      bats: true,
-      bowls: true,
-      team: '',
-      cost: 100,
-      sold: false,
-      active: true,
-      description: 'Although I have last played cricket long ago, I had been the best bowler of my colony Team and very good batsman as well. I have mostly played with Tennis ball(Flash and Mark ball) and sometimes with leather',
-      image: 'images/team/sachin.jpg'
+apl.factory('data', function () {
+    var listOfPlayers = [
+        {name: "Prayag Mittal", mobile: 8588856794, sold: false, gender: "Male"},
+        {name: "Brijesh Pant", mobile: 9899581678, sold: false, gender: "Male"},
+        {name: "Siddhartha Jain", mobile: 8802039386, sold: false, gender: "Male"},
+        {name: "vikram Singh rajpoot", mobile: 9705082987, sold: false, gender: "Male"},
+        {name: "Himanshu Arya", mobile: 9899311516, sold: false, gender: "Male"},
+        {name: "Nitin Gupta", mobile: 9654377145, sold: false, gender: "Male"},
+        {name: "Umesh Maurya", mobile: 9873654184, sold: false, gender: "Male"},
+        {name: "Prince Prakash", mobile: 8513866908, sold: false, gender: "Male"},
+        {name: "Nishant Gupta", mobile: 9910020462, sold: false, gender: "Male"},
+        {name: "Gurpreet Singh", mobile: 8527619772, sold: false, gender: "Male"},
+        {name: "Rituraj", mobile: 9717216024, sold: false, gender: "Male"},
+        {name: "Yogesh Srivastava", mobile: 9643966241, sold: false, gender: "Male"},
+        {name: "Rohan Aggarwal", mobile: 7835892943, sold: false, gender: "Male"},
+        {name: "Mohit Kanwar", mobile: 8588832476, sold: false, gender: "Male"},
+        {name: "Ravi Tyagi", mobile: 9654300219, sold: false, gender: "Male"},
+        {name: "Rajesh Kumar", mobile: 8800188338, sold: false, gender: "Male"},
+        {name: "Arun Yadav", mobile: 9871270008, sold: false, gender: "Male"},
+        {name: "Tanmay Mehra", mobile: 9739604977, sold: false, gender: "Male"},
+        {name: "Sumit Soman", mobile: 9718643329, sold: false, gender: "Male"},
+        {name: "Vivek negi", mobile: 8010725971, sold: false, gender: "Male"},
+        {name: "Vishal Pachori", mobile: 8826009630, sold: false, gender: "Male"},
+        {name: "Saransh Jain", mobile: 9953240326, sold: false, gender: "Male"},
+        {name: "Rahul Khanna", mobile: 9818811048, sold: false, gender: "Male"},
+        {name: "ADARSH AMAN", mobile: 9734843249, sold: false, gender: "Male"},
+        {name: "MANDAVI KISHOR", mobile: 9718870210, sold: false, gender: "Female"},
+        {name: "NITISH KUMAR ", mobile: 7863962312, sold: false, gender: "Male"},
+        {name: "Mayank Gupta", mobile: 9953965123, sold: false, gender: "Male"},
+        {
+            name: "Vivek Verma",
+            mobile: 9990079216,
+            captain: true,
+            team: "Super Giants",
+            sold: true,
+            gender: "Male",
+            cost: 0
+        },
+        {
+            name: "Sunny Sharma",
+            mobile: 9560539278,
+            captain: true,
+            team: "The Beasts",
+            sold: true,
+            gender: "Male",
+            cost: 0
+        },
+        {
+            name: "Amit Kumar",
+            mobile: 9711141223,
+            captain: true,
+            team: "Team Raiders",
+            sold: true,
+            gender: "Male",
+            cost: 0
+        },
+        {
+            name: "Vishal Singh",
+            mobile: 9990231783,
+            captain: true,
+            team: "Eleven Ducks",
+            sold: true,
+            gender: "Male",
+            cost: 0
+        },
+        {name: "Rajiv", mobile: 9810918234, sold: false, gender: "Male"},
+        {name: "Md Iqbal", mobile: 9818667050, sold: false, gender: "Male"},
+        {name: "Kapil Malhotra", mobile: 9871220809, sold: false, gender: "Male"},
+        {name: "Surbhi Varshney", mobile: 8373981131, sold: false, gender: "Female"},
+        {name: "Neha Singh", mobile: 8373981131, sold: false, gender: "Female"},
+        {name: "Swati Bagga", mobile: 8373981131, sold: false, gender: "Female"},
+        {name: "Kapil Choudhary", mobile: 9560654774, sold: false, gender: "Male"},
+        {name: "Hemant", mobile: 9818679878, sold: false, gender: "Male"},
+        {name: "sheetal singh", mobile: 9911872805, sold: false, gender: "Male"},
+        {name: "Shubham purwar", mobile: 9205979473, sold: false, gender: "Male"},
+        {name: "Jasleen", mobile: 8527533789, sold: false, gender: "Female"},
+        {name: "Shweta", mobile: 8791640735, sold: false, gender: "Female"},
+        {name: "Vikrant Singh", mobile: 9873608216, sold: false, gender: "Male"},
+        {name: "Ankush Maheshwari", mobile: 9599925374, sold: false, gender: "Male"},
+        {name: "Manav", mobile: 8882948255, sold: false, gender: "Male"},
+        {name: "Nishant Maggo", mobile: 9910462830, sold: false, gender: "Male"},
+        {name: "Manish Saraswat", mobile: 9213519083, sold: false, gender: "Male"},
+        {name: "Nikhil Solanki", mobile: 9999091400, sold: false, gender: "Male"},
+        {name: "Pankaj Dubey", mobile: 9999091400, sold: false, gender: "Male"}
+
+    ];
+
+    function saveListOfPlayers(players) {
+        localStorage.setItem('players', JSON.stringify(players));
     }
-  ];
 
-  function saveListOfPlayers(players){
-    localStorage.setItem('players', JSON.stringify(players));
-  }
+    function getListOfPlayers() {
+        return JSON.parse(localStorage.getItem('players')) || listOfPlayers;
+    }
 
-  function getListOfPlayers(){
-    return JSON.parse(localStorage.getItem('players')) || listOfPlayers;
-  }
-
-  return {
-    getListOfPlayers: getListOfPlayers,
-    saveListOfPlayers : saveListOfPlayers
-  }
+    return {
+        getListOfPlayers: getListOfPlayers,
+        saveListOfPlayers: saveListOfPlayers
+    }
 });

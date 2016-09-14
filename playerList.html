@@ -1,0 +1,28 @@
+<md-dialog>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Players Pool</h2>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="row" ng-repeat="row in players|filter:{sold:false} | chunk:4">
+            <div class="col-md-3" ng-repeat="player in row ">
+                <md-content class="md-padding" layout="column">
+                    <md-card>
+                        <img ng-src="{{getImage(player)}}" alt="..."
+                             class="img-circle playerImage"/>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{player.name}} ({{player.gender}})</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                </md-content>
+
+            </div>
+
+        </div>
+
+    </md-dialog-content>
+
+</md-dialog>

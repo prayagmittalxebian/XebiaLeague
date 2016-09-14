@@ -1,0 +1,82 @@
+<md-dialog>
+
+    <md-dialog-content>
+        <md-grid-tile-footer>
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="well">
+                        <div class="control">
+                            <!--<button class="btn btn-success btn-lg btn100" ng-click="getRandomPlayer()">Get Player</button>-->
+                            <div class="row" style="margin-top:10px">
+                                <div class="col-md-3">
+                                    <img ng-src="{{getImage(currentPlayer)}}" alt="{{currentPlayer.name}}"
+                                         class="img-circle playerImage">
+                                </div>
+                                <div class="col-md-9">
+                                    <div>
+                                        <h1>
+                                            {{currentPlayer.name || 'Get Ready for the Next Player'}}
+                                        </h1>
+                                        <blockquote ng-if="currentPlayer.description">{{currentPlayer.description}}
+                                            ({{currentPlayer.gender}})
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button class="btn btn-lg btn-primary btn100" ng-click="getRandomPlayer()">
+                                        <span class="glyphicon glyphicon-refresh"></span>
+                                    </button>
+                                </div>
+                                <div class="col-md-7">
+
+                                </div>
+
+                                <div class="col-md-3">
+                                    <md-input-container>
+                                        <label>Cost</label>
+                                        <md-select ng-model="playerCost">
+                                            <md-option></md-option>
+                                            <md-option value="100">100</md-option>
+                                            <md-option value="150">150</md-option>
+                                            <md-option value="250">250</md-option>
+                                            <md-option value="300">300</md-option>
+                                            <md-option value="350">350</md-option>
+                                            <md-option value="400">350</md-option>
+                                        </md-select>
+                                    </md-input-container>
+
+                                </div><!-- /input-group -->
+                            </div><!-- /.col-lg-6 -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <md-content class="md-padding" layout-xs="column" layout="row">
+                <div flex-xs flex-gt-xs="100" layout="column" ng-repeat="team in teams">
+                    <md-button class="btn1 right" type="button" ng-click="addToTeam(playerCost, $index)">
+                        Select <span class="badge bg-primary">{{maxPoints - team.currentCost}}</span>
+                    </md-button>
+                    <md-card>
+                        <img ng-src="images/{{team.image}}.png" class="md-card-image" alt="{{team.name}}">
+                        <!--<md-card-actions layout="row">-->
+                        <!--<md-card-icon-actions>-->
+
+                        <!--</md-card-icon-actions>-->
+                        <!--</md-card-actions>-->
+                        <!--<md-card-title>-->
+                        <!--<md-card-title-text>-->
+                        <!--<span class="md-headline">{{maxPoints - team.currentCost}}</span>-->
+                        <!--</md-card-title-text>-->
+                        <!--</md-card-title>-->
+
+                    </md-card>
+                </div>
+            </md-content>
+
+        </md-grid-tile-footer>
+    </md-dialog-content>
+</md-dialog>

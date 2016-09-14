@@ -1,1 +1,1 @@
-var apl = angular.module('apl', []);
+var apl = angular.module('apl', ['ngMaterial']);

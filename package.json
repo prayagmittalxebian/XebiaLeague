@@ -1,0 +1,23 @@
+{
+  "name": "xebialeague",
+  "version": "1.0.0",
+  "description": "XEBIAPremierLeague ===================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -a localhost -p 8000 -c-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "brij:prayagmittalxebian/XebiaLeague.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-material": "^1.1.1",
+    "http-server": "^0.9.0"
+  }
+}
