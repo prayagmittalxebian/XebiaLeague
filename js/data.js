@@ -67,6 +67,8 @@ apl.factory('data', function () {
         {name: "Md Iqbal", mobile: 9818667050, sold: false, gender: "Male"},
         {name: "Kapil Malhotra", mobile: 9871220809, sold: false, gender: "Male"},
         {name: "Surbhi Varshney", mobile: 8373981131, sold: false, gender: "Female"},
+        {name: "Neha Singh", mobile: 8373981131, sold: false, gender: "Female"},
+        {name: "Swati Bagga", mobile: 8373981131, sold: false, gender: "Female"},
         {name: "Kapil Choudhary", mobile: 9560654774, sold: false, gender: "Male"},
         {name: "Hemant", mobile: 9818679878, sold: false, gender: "Male"},
         {name: "sheetal singh", mobile: 9911872805, sold: false, gender: "Male"},
@@ -79,6 +81,7 @@ apl.factory('data', function () {
         {name: "Nishant Maggo", mobile: 9910462830, sold: false, gender: "Male"},
         {name: "Manish Saraswat", mobile: 9213519083, sold: false, gender: "Male"},
         {name: "Nikhil Solanki", mobile: 9999091400, sold: false, gender: "Male"},
+        {name: "Pankaj Dubey", mobile: 9999091400, sold: false, gender: "Male"},
         {name: "Aman Seth", mobile: 8658063674, sold: false, gender: "Male"}
 
     ];
