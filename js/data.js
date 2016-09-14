@@ -81,8 +81,7 @@ apl.factory('data', function () {
         {name: "Nishant Maggo", mobile: 9910462830, sold: false, gender: "Male"},
         {name: "Manish Saraswat", mobile: 9213519083, sold: false, gender: "Male"},
         {name: "Nikhil Solanki", mobile: 9999091400, sold: false, gender: "Male"},
-        {name: "Pankaj Dubey", mobile: 9999091400, sold: false, gender: "Male"},
-        {name: "Aman Seth", mobile: 8658063674, sold: false, gender: "Male"}
+        {name: "Pankaj Dubey", mobile: 9999091400, sold: false, gender: "Male"}
 
     ];
 
